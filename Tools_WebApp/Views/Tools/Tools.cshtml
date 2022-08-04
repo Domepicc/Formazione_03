@@ -1,0 +1,132 @@
+﻿
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<div>
+    <center>
+        <img hidden="hidden" id="loadingGif" name="loadingGif" src="https://1.bp.blogspot.com/-otKDpgCbh88/VKV6xDtHvoI/AAAAAAAAB_E/sDikYkQN8fg/s1600/Page-loading-effect-blogger.gifalt=" alt="Loading GIF" width="50" height="50">
+    </center>
+
+    <div>
+        <input type="text" id="inputToolId" name="inputToolId" />
+        <input type="submit" id="searchTools" name="searchTools" value="Search">
+        @*<img src="~/Views/Resource/Loading.gif" alt="Loading GIF">*@
+
+    </div>
+
+
+
+
+
+    <table id="toolTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>IdTool</th>
+                <th>BoschCode</th>
+                <th>Description</th>
+                <th>PrimarySupplier</th>
+                <th>SecondarySupplier</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>IdTool</th>
+                <th>BoschCode</th>
+                <th>Description</th>
+                <th>PrimarySupplier</th>
+                <th>SecondarySupplier</th>
+                <th>Quantity</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+
+    var input = document.getElementById("inputToolId");
+    console.log(input);
+    input.addEventListener("keyup", onKeyUpInputToolId);
+
+    $(document).ready(function () {
+        $("#searchTools").click(function () {
+            var stringId = $("#inputToolId").val();
+            getToolsByPartiald(stringId);
+        })
+    });
+
+    function onKeyUpInputToolId() {
+        var stringId = $("#inputToolId").val();
+        console.log(stringId);
+        if (stringId.length >= 2) {
+            getToolsByPartiald(stringId);
+        }
+
+    };
+
+    var toolTable = $('#toolTable').DataTable();
+    
+
+    function getToolsByPartiald(stringId) {
+        $.ajax({
+            url: "GetByPartialId/" + stringId,
+            type: "GET",
+            success: function (result) {
+                $('#loadingGif').show("slow");
+                //showTable(result)
+                $('#loadingGif').hide("slow");
+
+                $('#toolTable').html(result);
+            }
+        });
+    };
+
+    function showTable(result) {
+        $('#toolTable').empty();
+        $('#toolTable').append(result);
+    }
+
+    //function showTable(id) {
+    //    $('#toolTable').DataTable({
+
+    //        "bDestroy": true,
+
+    //        ajax: {
+    //            fill: false,
+    //            type: "GET",
+    //            url: "/Tools/GetByPartialId/" + id,
+    //            dataSrc: "",
+    //            dataType: 'json'
+    //        },
+
+    //        columns: [
+    //            {
+    //                data: "IdTool"
+    //            },
+    //            {
+    //                data: "BoschCode"
+    //            },
+    //            {
+    //                data: "Description"
+    //            },
+    //            {
+    //                data: "PrimarySupplier"
+    //            },
+    //            {
+    //                data: "SecondarySupplier"
+    //            },
+    //            {
+    //                data: "Quantity"
+    //            }
+    //        ]
+
+    //    });
+    //}
+
+</script>
+

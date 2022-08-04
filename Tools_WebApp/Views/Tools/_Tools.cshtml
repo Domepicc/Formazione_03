@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Tools_WebApp.Models.Tool>
+
+
+<table id="toolTable" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTool)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoschCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimarySupplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondarySupplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoschCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimarySupplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondarySupplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
