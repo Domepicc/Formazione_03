@@ -51,13 +51,16 @@ namespace Tools_WebApp.IRepositories
                     toolUpdate.PrimarySupplier = item.PrimarySupplier;
                     toolUpdate.SecondarySupplier = item.SecondarySupplier;
                     toolUpdate.Quantity = item.Quantity;
+                    return myDb.SaveChanges() > 0;
+
 
                 }
                 else
                 {
                     myDb.Tools.Add(tool);
+                    return myDb.SaveChanges() > 0;
+
                 }
-                return myDb.SaveChanges() > 0;
 
             }
         }

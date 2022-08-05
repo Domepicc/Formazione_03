@@ -1,55 +1,106 @@
 ﻿@model IEnumerable<Tools_WebApp.Models.Tool>
+<table id="toolTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoschCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimarySupplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondarySupplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
 
-
-<table id="toolTable" class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdTool)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BoschCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrimarySupplier)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecondarySupplier)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdTool)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BoschCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrimarySupplier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondarySupplier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    <tbody id=" toolTableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="toolTableBodyRow" onclick="openDetails(this.innerHTML)">
+                    @Html.DisplayFor(modelItem => item.IdTool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BoschCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimarySupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondarySupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+            </tr>
+        }
+    </tbody>
 </table>
+    <script>
+
+        function openDetails(stringId) {
+            console.log(stringId);
+
+            $.ajax({
+                url: "GetById/" + stringId,
+                type: "GET",
+                success: function (result) {
+                    window.open("https://localhost:44340/Tools/GetById/" + stringId);
+                }
+            });
+          
+        };
+
+        $(document).ready(function (result) {
+            $('#toolTable').DataTable({
+                "bDestroy": true,
+
+                columns: [
+                    {
+                        data: "IdTool"
+                    },
+                    {
+                        data: "BoschCode"
+                    },
+                    {
+                        data: "Description"
+                    },
+                    {
+                        data: "PrimarySupplier"
+                    },
+                    {
+                        data: "SecondarySupplier"
+                    },
+                    {
+                        data: "Quantity"
+                    }
+                ]
+            });
+        });
+
+
+   
+            
+                
+
+    </script>
+

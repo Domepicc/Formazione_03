@@ -42,9 +42,11 @@ namespace Tools_WebApp.Controllers
             return PartialView("_Tools", _query.ReadAll());
         }
 
+        [System.Web.Http.Route("api/Tools/ToolDetails/{id}/")]
+
         public ActionResult GetById(string id)
         {
-            return Json(_query.ReadById(id), JsonRequestBehavior.AllowGet);
+            return View("ToolDetails", _query.ReadById(id));
         }
 
         //public ActionResult GetByPartialId(string id)

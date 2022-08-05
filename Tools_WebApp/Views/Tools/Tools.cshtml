@@ -16,41 +16,23 @@
 
     </div>
 
-
-
-
-
-    <table id="toolTable" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>IdTool</th>
-                <th>BoschCode</th>
-                <th>Description</th>
-                <th>PrimarySupplier</th>
-                <th>SecondarySupplier</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>IdTool</th>
-                <th>BoschCode</th>
-                <th>Description</th>
-                <th>PrimarySupplier</th>
-                <th>SecondarySupplier</th>
-                <th>Quantity</th>
-            </tr>
-        </tfoot>
-    </table>
+ 
 </div>
+
+<div id="container">
+
+
+</div>
+
+
 
 
 <script type="text/javascript">
 
+
+
+
     var input = document.getElementById("inputToolId");
-    console.log(input);
     input.addEventListener("keyup", onKeyUpInputToolId);
 
     $(document).ready(function () {
@@ -69,8 +51,6 @@
 
     };
 
-    var toolTable = $('#toolTable').DataTable();
-    
 
     function getToolsByPartiald(stringId) {
         $.ajax({
@@ -78,55 +58,16 @@
             type: "GET",
             success: function (result) {
                 $('#loadingGif').show("slow");
-                //showTable(result)
+                showTable(result)
                 $('#loadingGif').hide("slow");
-
-                $('#toolTable').html(result);
+                
             }
         });
     };
 
     function showTable(result) {
-        $('#toolTable').empty();
-        $('#toolTable').append(result);
+        $('#container').html(result);
     }
-
-    //function showTable(id) {
-    //    $('#toolTable').DataTable({
-
-    //        "bDestroy": true,
-
-    //        ajax: {
-    //            fill: false,
-    //            type: "GET",
-    //            url: "/Tools/GetByPartialId/" + id,
-    //            dataSrc: "",
-    //            dataType: 'json'
-    //        },
-
-    //        columns: [
-    //            {
-    //                data: "IdTool"
-    //            },
-    //            {
-    //                data: "BoschCode"
-    //            },
-    //            {
-    //                data: "Description"
-    //            },
-    //            {
-    //                data: "PrimarySupplier"
-    //            },
-    //            {
-    //                data: "SecondarySupplier"
-    //            },
-    //            {
-    //                data: "Quantity"
-    //            }
-    //        ]
-
-    //    });
-    //}
 
 </script>
 

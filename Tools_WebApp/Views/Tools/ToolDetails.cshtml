@@ -1,0 +1,92 @@
+﻿@model Tools_WebApp.Models.Tool
+
+@{
+    ViewBag.Title = "ToolDetails";
+}
+
+<h2>ToolDetails</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>
+            Tool         @Html.DisplayFor(model => model.IdTool)
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="boschCode" class="form-group">
+            @Html.LabelFor(model => model.BoschCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BoschCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BoschCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="description" class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="primarySupplier" class="form-group">
+            @Html.LabelFor(model => model.PrimarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrimarySupplier, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PrimarySupplier, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="secondarySupplier" class="form-group">
+            @Html.LabelFor(model => model.SecondarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecondarySupplier, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SecondarySupplier, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="quantity" class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="saveTool" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    $("#saveTool").on('click', saveData());
+
+    function saveData() {
+        var data;
+        //var idTool = document.getElementById("idTool");
+        var boschCode = document.getElementById("boschCode").innerHTML;
+        var description = document.getElementById("description").innerHTML;
+        var primarySupplier = document.getElementById("primarySupplier").innerHTML;
+        var secondarySupplier = document.getElementById("secondarySupplier").innerHTML;
+        var quantity = document.getElementById("quantity").innerHTML;
+
+        
+
+        console.log( boschCode + description + primarySupplier + secondarySupplier + quantity);
+        $.post("https://localhost:44340/Tools/Post/", data);
+    }
+
+
+</script>
