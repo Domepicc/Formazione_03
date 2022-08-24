@@ -1,7 +1,12 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Xunit;
+using Xunit.Sdk;
 
 namespace Tools_WebApp.Models
 {
@@ -17,6 +22,7 @@ namespace Tools_WebApp.Models
 
         public string SecondarySupplier { get; set; }
 
+        //[RegularExpression("([0-9]*)")]
         public int? Quantity { get; set; }
 
     }

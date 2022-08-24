@@ -31,6 +31,11 @@ namespace Tools_WebApp.IRepositories
 
         public bool Insert(CreateToolCommand item)
         {
+            //if (item.Quantity < 0)
+            //{
+            //    return false;
+            //}
+
             Tool tool = new Tool
             {
                 IdTool = item.IdTool,

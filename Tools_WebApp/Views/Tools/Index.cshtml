@@ -12,11 +12,8 @@
     <div>
         <input type="text" id="inputToolId" name="inputToolId" />
         <input type="submit" id="searchTools" name="searchTools" value="Search">
-        @*<img src="~/Views/Resource/Loading.gif" alt="Loading GIF">*@
-
     </div>
 
- 
 </div>
 
 <div id="container">
@@ -29,11 +26,8 @@
 
 <script type="text/javascript">
 
-
-
-
     var input = document.getElementById("inputToolId");
-    input.addEventListener("keyup", onKeyUpInputToolId);
+    $(document).ready(input.addEventListener("keyup", onKeyUpInputToolId));
 
     $(document).ready(function () {
         $("#searchTools").click(function () {
@@ -48,14 +42,14 @@
         if (stringId.length >= 2) {
             getToolsByPartiald(stringId);
         }
-
     };
 
 
     function getToolsByPartiald(stringId) {
         $.ajax({
-            url: "GetByPartialId/" + stringId,
+            url: "/Tools/GetByPartialId/" + stringId,
             type: "GET",
+            async: false,
             success: function (result) {
                 $('#loadingGif').show("slow");
                 showTable(result)

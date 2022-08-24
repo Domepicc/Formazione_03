@@ -19,5 +19,7 @@ namespace Tools_WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+     
     }
 }
+

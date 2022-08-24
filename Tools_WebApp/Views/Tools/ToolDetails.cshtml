@@ -6,64 +6,84 @@
 
 <h2>ToolDetails</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>
-            Tool         @Html.DisplayFor(model => model.IdTool)
-        </h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div id="boschCode" class="form-group">
-            @Html.LabelFor(model => model.BoschCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BoschCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BoschCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+@Html.AntiForgeryToken()
 
-        <div id="description" class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal">
+    <h4>
+        Tool         @Html.DisplayFor(model => model.IdTool)
+    </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div id="primarySupplier" class="form-group">
-            @Html.LabelFor(model => model.PrimarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PrimarySupplier, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PrimarySupplier, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div id="secondarySupplier" class="form-group">
-            @Html.LabelFor(model => model.SecondarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SecondarySupplier, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SecondarySupplier, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div id="quantity" class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="saveTool" type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdTool, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IdTool, new { htmlAttributes = new { @class = "form-control", @id = "idTool", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.IdTool, "", new { @class = "text-danger" })
         </div>
     </div>
-}
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BoschCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BoschCode, new { htmlAttributes = new { @class = "form-control", @id = "boschCode" } })
+            @Html.ValidationMessageFor(model => model.BoschCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "description" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PrimarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PrimarySupplier, new { htmlAttributes = new { @class = "form-control", @id = "primarySupplier" } })
+            @Html.ValidationMessageFor(model => model.PrimarySupplier, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SecondarySupplier, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SecondarySupplier, new { htmlAttributes = new { @class = "form-control", @id = "secondarySupplier" } })
+            @Html.ValidationMessageFor(model => model.SecondarySupplier, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @id = "quantity", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="saveTool" type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+
+    <div class="alert alert-success" hidden="hidden">
+        Procedura eseguita con successo <br />
+    </div>
+
+    <div class="alert alert-danger" hidden="hidden" role="alert">
+        Hai inserito dei valori non validi
+    </div>
+
+</div>
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -71,21 +91,35 @@
 
 <script>
 
-    $("#saveTool").on('click', saveData());
+    $(document).ready(function () {
+        $("#saveTool").click(saveData)
+    });
+
+
+
 
     function saveData() {
-        var data;
-        //var idTool = document.getElementById("idTool");
-        var boschCode = document.getElementById("boschCode").innerHTML;
-        var description = document.getElementById("description").innerHTML;
-        var primarySupplier = document.getElementById("primarySupplier").innerHTML;
-        var secondarySupplier = document.getElementById("secondarySupplier").innerHTML;
-        var quantity = document.getElementById("quantity").innerHTML;
 
-        
+        $.ajax({
+            url: "../Post",
+            type: "POST",
+            data: {
+                IdTool:             $("#idTool").val(),
+                BoschCode :         $("#boschCode").val(),
+                Description :       $("#description").val(),
+                PrimarySupplier :   $("#primarySupplier").val(),
+                SecondarySupplier : $("#secondarySupplier").val(),
+                Quantity :          $("#quantity").val()
+            },
+            success: function () {
+                $(".alert-success").show();
+            },
+            error: function () {
+                $(".alert-danger").show();
+            }
 
-        console.log( boschCode + description + primarySupplier + secondarySupplier + quantity);
-        $.post("https://localhost:44340/Tools/Post/", data);
+        });
+
     }
 
 
