@@ -62,7 +62,7 @@
         @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @id = "quantity", @min = "0" } })
-            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Quantity)
         </div>
     </div>
 
@@ -73,12 +73,10 @@
     </div>
 
 
-    <div class="alert alert-success" hidden="hidden">
-        Procedura eseguita con successo <br />
-    </div>
 
-    <div class="alert alert-danger" hidden="hidden" role="alert">
-        Hai inserito dei valori non validi
+
+    <div id="alert-message">
+        
     </div>
 
 </div>
@@ -111,11 +109,12 @@
                 SecondarySupplier : $("#secondarySupplier").val(),
                 Quantity :          $("#quantity").val()
             },
-            success: function () {
-                $(".alert-success").show();
+            success: function (result) {
+
+                $("#alert-message").html(result); // partial view success
             },
-            error: function () {
-                $(".alert-danger").show();
+            error: function (result) {
+                $("#alert-message").html(result); // partial view danger
             }
 
         });

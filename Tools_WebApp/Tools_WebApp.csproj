@@ -267,6 +267,8 @@
     <Content Include="Views\Tools\Tools with Json.cshtml" />
     <Content Include="Views\Tools\_Tools.cshtml" />
     <Content Include="Views\Tools\ToolDetails.cshtml" />
+    <Content Include="Views\Shared\_AlertSuccess.cshtml" />
+    <Content Include="Views\Shared\_AlertDanger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office.ActiveX;
+using System;
 using System.Web.Http;
 using System.Web.Mvc;
 using Tools_WebApp.Commands;
@@ -63,23 +64,33 @@ namespace Tools_WebApp.Controllers
             return true;
         }
 
-        public bool Post([FromBody] Tool model)
+        public ActionResult Post([FromBody] Tool model)
         {
+            // temporal variable, to do change with method that control the model parameter
+            bool ok = true;
+
+
             if (ModelState.IsValid)
             {
-                CreateToolCommand command = new CreateToolCommand(model);
 
                 // osserva come dopo il publish il controllo passa a UpdateToolQuantityCommandHandler senza bisogno di chiamarlo direttamente
 
                 // anche _commandBus viene istanziato da Autofac
-
+                CreateToolCommand command = new CreateToolCommand(model);
                 _command.Publish(command);
+
+                return PartialView("_AlertSuccess");
             }
-        
+            else
+            {
+                return PartialView("_AlertDanger");
 
- 
 
-            return true;
+            }
+
+
+
+
 
         }
 

@@ -22,7 +22,7 @@ namespace Tools_WebApp.Models
 
         public string SecondarySupplier { get; set; }
 
-        //[RegularExpression("([0-9]*)")]
+        [RegularExpression("([0-9]d*)", ErrorMessage = "Insert number greater than zero")]
         public int? Quantity { get; set; }
 
     }
