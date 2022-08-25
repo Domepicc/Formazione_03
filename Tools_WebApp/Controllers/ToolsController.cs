@@ -66,8 +66,6 @@ namespace Tools_WebApp.Controllers
 
         public ActionResult Post([FromBody] Tool model)
         {
-            // temporal variable, to do change with method that control the model parameter
-            bool ok = true;
 
 
             if (ModelState.IsValid)

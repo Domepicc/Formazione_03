@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Xunit;
 using Xunit.Sdk;
+using Tools_WebApp.Validator;
 
 namespace Tools_WebApp.Models
 {
@@ -22,7 +23,8 @@ namespace Tools_WebApp.Models
 
         public string SecondarySupplier { get; set; }
 
-        [RegularExpression("([0-9]d*)", ErrorMessage = "Insert number greater than zero")]
+        [NotNegativeNumber]
+        //[RegularExpression("([0-9]d*)", ErrorMessage = "Insert number greater than zero")]
         public int? Quantity { get; set; }
 
     }

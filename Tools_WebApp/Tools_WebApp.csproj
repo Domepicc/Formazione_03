@@ -225,6 +225,7 @@
     </Compile>
     <Compile Include="Queries\IQuery.cs" />
     <Compile Include="Queries\Query.cs" />
+    <Compile Include="Validator\NotNegativeNumber.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
